@@ -3,8 +3,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <iostream>
 
 #include "dico.h"
+
+using namespace std;
 
 int piocherMot(char * motPioche)
 {
@@ -54,6 +57,7 @@ int piocherMot(char * motPioche)
 
 int nombreAleatoire(int nombreMax)
 {
-	// A implémenter ...
-	return 0;
+	srand(time(NULL));
+	nombreMax = rand()%nombreMax;
+	return nombreMax;
 }
