@@ -18,6 +18,7 @@ int main(int argc, char ** argv)
 	char tablettre[100];
 	int j = 0;
 
+	
 	piocherMot(mot);
 
 	for (int i = 0; i < strlen(mot); i++)
@@ -42,9 +43,14 @@ int main(int argc, char ** argv)
 
 	}
 	
+	for (int i = 0; i < strlen(mot); i++)
+	{
+		cout << mot[i];
+	}
+
 	do
 	{
-		cout << "Il reste " << nombreCoup - j << " coups" << endl;
+		cout << "Il reste " << nombreCoup << " coups" << endl;
 		//saisie d'une lettre
 		do {
 			cout << endl << "Proposez une lettre : ";
@@ -73,6 +79,7 @@ int main(int argc, char ** argv)
 				
 				tablettre[i] = lettre;
 				compteur++;
+				nombreCoup++;
 			}
 			else if(tablettre[i] != '*')
 			{
@@ -80,11 +87,11 @@ int main(int argc, char ** argv)
 			}
 			else 
 			{
-				j++;
 				tablettre[i]='*';
 			}
 			
 		}
+		
 		
 		for (int y = 0; y < strlen(mot); y++)
 		{
@@ -98,9 +105,9 @@ int main(int argc, char ** argv)
 		{
 			break;
 		}
+		nombreCoup--;
 		
-		
-	} while (nombreCoup != j);
+	} while (nombreCoup != 0);
 
 	if (compteur == strlen(mot))
 	{
