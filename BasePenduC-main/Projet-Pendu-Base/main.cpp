@@ -16,8 +16,14 @@ int main(int argc, char ** argv)
 	int nombreCoup=0;
 	char mot[100];
 	char tablettre[100];
+	int j = 0;
 
 	piocherMot(mot);
+
+	for (int i = 0; i < strlen(mot); i++)
+	{
+		tablettre[i] = '*';
+	}
 	compteur = 0;
 	cout << "Bienvenue dans le Pendu !" << endl;
 	
@@ -27,23 +33,15 @@ int main(int argc, char ** argv)
 		cout << "*";
 	}
 
-	cout << "Combien d'essais pour reussir ? : ";
+	cout << endl << "Combien d'essais pour reussir ? : ";
 	cin >> nombreCoup;
-	
-	while (nombreCoup < strlen(mot))
+	while (nombreCoup < 0)
 	{
 		cout << "Nombre d'essais insuffisant pour réussir, retapez un nombre d'essais ? : ";
 		cin >> nombreCoup;
 
 	}
-
-	for (int i = 0; i < strlen(mot); i++)
-	{
-		cout <<endl<< mot[i];
-	}
-
-	int j = 0;
-	int o = 0;
+	
 	do
 	{
 		cout << "Il reste " << nombreCoup - j << " coups" << endl;
@@ -72,26 +70,50 @@ int main(int argc, char ** argv)
 			
 			if (lettre == mot[i])
 			{
-				cout << mot[i];
-				tablettre[o] = lettre;
-				o++;
+				
+				tablettre[i] = lettre;
+				compteur++;
 			}
-			else if (tablettre[i] == mot[i])
+			else if(tablettre[i] != '*')
 			{
-				cout << mot[i];
+				tablettre[i] = tablettre[i];
 			}
-			else
+			else 
 			{
-				cout << "*";
+				j++;
+				tablettre[i]='*';
 			}
-		
 			
 		}
-		cout << endl;
-		j++;
-	} while (nombreCoup != j);
-	//or compteur != strlen(mot)
+		
+		for (int y = 0; y < strlen(mot); y++)
+		{
+			cout << tablettre[y];
+		}
 
+
+		cout << endl;
+		
+		if (compteur == strlen(mot))
+		{
+			break;
+		}
+		
+		
+	} while (nombreCoup != j);
+
+	if (compteur == strlen(mot))
+	{
+		cout << "VICTOIRE !" << endl;
+	}
+	else
+	{
+		cout << "C'est perdu ! le mot etait : ";
+		for (int i = 0; i < strlen(mot); i++)
+		{
+			cout << mot[i];
+		}
+	}
 
 
 
