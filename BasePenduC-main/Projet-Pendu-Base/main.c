@@ -11,7 +11,7 @@ int main(int argc, char ** argv)
 						// le même mot. Vous devez implémenter la fonction
 						// int nombreAleatoire(int nombreMax) dans le fichier
 						// dico.c pour que cela fonctionne correctement.
-	printf("Pioches : %s", mot);
+	printf("Pioche : %s", mot);
 	//--------------------------------------------------
 
 	return 0;
