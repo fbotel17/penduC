@@ -12,25 +12,24 @@ using namespace std;
 int main(int argc, char ** argv)
 {
 	char lettre;
-	char modeJeu;
 	int compteur;
-	int nombreCoup=0;
+	char modeJeu;
+	int nombreCoup = 0;
 	char mot[100];
 	char tablettre[100];
 	int j = 0;
-	char arret='a';
+	char arret;
+	int temp1;
 
 	do
 	{
 		system("CLS");
 
-		for (int i = 0; i < strlen(mot); i++)
-		{
-			tablettre[i] = '*';
-		}
-		compteur = 0;
-		cout << "Bienvenue dans le Pendu !" << endl;
+
 		
+		compteur = 0;
+		cout << "Bienvenue dans le Pendu !" << endl<<endl;
+
 		do
 		{
 			cout << "Mode solo - tapez 1" << endl;
@@ -41,7 +40,6 @@ int main(int argc, char ** argv)
 				cout << "Saisie incorrecte" << endl;
 			}
 		} while (modeJeu != '1' and modeJeu != '2');
-		
 
 		if (modeJeu == '1')
 		{
@@ -49,10 +47,13 @@ int main(int argc, char ** argv)
 		}
 		else
 		{
-			cout << "Joueur 1 entre ton mot, ne pas montrer a Joueur 2 :";
-				cin >> mot;
+			cout << "Joueur 1 entre ton mot, ne pas montrer a Joueur 2 (en MAJUSCULE) :"<<endl;
+			cin >> mot;
 		}
-
+		for (int i = 0; i < strlen(mot)+1; i++)
+				{
+					tablettre[i] = '*';
+				}
 
 		cout << endl << "mot secret : ";
 		for (int i = 0; i < strlen(mot); i++)
@@ -69,17 +70,14 @@ int main(int argc, char ** argv)
 
 		}
 
-		for (int i = 0; i < strlen(mot); i++)
-		{
-			cout << mot[i];
-		}
-
+		
+		int temp2= 0;
 		do
 		{
-			cout << endl << "Il reste " << nombreCoup << " coups" << endl;
+			cout << "Il reste " << nombreCoup << " coups" << endl;
 			//saisie d'une lettre
 			do {
-				cout << endl << "Proposez une lettre : ";
+				cout << endl << "Proposez une lettre (en MAJUSCULE) : ";
 				cin >> lettre;
 				if (lettre >= 97 and lettre <= 122)
 				{
@@ -95,7 +93,7 @@ int main(int argc, char ** argv)
 				}
 			} while (!(lettre >= 65 and lettre <= 90));
 
-
+			temp1 = 0;
 
 			for (int i = 0; i < strlen(mot); i++)
 			{
@@ -105,7 +103,7 @@ int main(int argc, char ** argv)
 
 					tablettre[i] = lettre;
 					compteur++;
-					nombreCoup++;
+					temp1++;
 				}
 				else if (tablettre[i] != '*')
 				{
@@ -117,7 +115,10 @@ int main(int argc, char ** argv)
 				}
 
 			}
-
+			if (temp1 >= 1)
+			{
+				nombreCoup++;
+			}
 
 			for (int y = 0; y < strlen(mot); y++)
 			{
@@ -147,11 +148,12 @@ int main(int argc, char ** argv)
 				cout << mot[i];
 			}
 		}
-
-		cout <<endl<< "Une partie va se relancer, si vous ne souhaitez pas rejouer ecrivez 0, sinon appuyez sur une touche pour rejouer" << endl;
-		cin>>arret;
+		cout << endl << "Une partie va se relancer, si vous ne souhaitez pas rejouer ecrivez 0, sinon appuyez sur une touche pour rejouer" << endl;
+		cin >> arret;
 
 	}while (arret != '0');
+
+
 
 
 	//--------------------------------------------------
