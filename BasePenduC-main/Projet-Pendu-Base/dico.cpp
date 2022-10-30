@@ -12,14 +12,14 @@ using namespace std;
 int piocherMot(char * motPioche)
 {
 	FILE* dico = NULL; // Le pointeur de fichier qui va contenir notre fichier
-	int nombreMots = 0, numMotChoisi = 0, i = 0;
+	int nombreMots = 0, numMotChoisi, tempNum = 0;
 	int caractereLu = 0;
 	dico = fopen("dico.txt", "r"); // On ouvre le dictionnaire en lecture seule
 
 	// On vérifie si on a réussi à ouvrir le dictionnaire
 	if (dico == NULL) // Si on n'a PAS réussi à ouvrir le fichier
 	{
-		printf("\nImpossible de charger le dictionnaire de mots");
+		printf("\nImpossible de charger le dictionnaire de mots, verifier si vous avez le fichier dico.txt ;)\n");
 		return 0; // On retourne 0 pour indiquer que la fonction a échoué
 		// A la lecture du return, la fonction s'arrête immédiatement.
 	}
@@ -35,6 +35,11 @@ int piocherMot(char * motPioche)
 
 	numMotChoisi = nombreAleatoire(nombreMots); // On pioche un mot au hasard
 
+	if (numMotChoisi == 8)
+	{
+		tempNum = 8;
+	}
+
 	// On recommence à lire le fichier depuis le début. On s'arrête lorsqu'on est arrivés au bon mot
 	rewind(dico);
 	while (numMotChoisi > 0)
@@ -49,15 +54,22 @@ int piocherMot(char * motPioche)
 	fgets(motPioche, 100, dico);
 
 	// On vire l'\n à la fin
-	motPioche[strlen(motPioche) - 1] = '\0';
+	if (tempNum == 8)
+	{
+		motPioche[strlen(motPioche) + 1] = '\0';
+	}
+	else
+	{
+		motPioche[strlen(motPioche) - 1] = '\0';
+	}
+
 	fclose(dico);
 
 	return 1; // Tout s'est bien passé, on retourne 1
 }
-
 int nombreAleatoire(int nombreMax)
 {
 	srand(time(NULL));
-	nombreMax = rand()%nombreMax;
-	return nombreMax;
+	int nombreAl = rand()%(nombreMax + 1 - 0);
+	return nombreAl;
 }
