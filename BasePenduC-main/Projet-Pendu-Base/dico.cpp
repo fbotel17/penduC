@@ -35,9 +35,9 @@ int piocherMot(char * motPioche)
 
 	numMotChoisi = nombreAleatoire(nombreMots); // On pioche un mot au hasard
 
-	if (numMotChoisi == 8)
+	if (numMotChoisi == nombreMots)
 	{
-		tempNum = 8;
+		tempNum = nombreMots;
 	}
 
 	// On recommence à lire le fichier depuis le début. On s'arrête lorsqu'on est arrivés au bon mot
@@ -54,7 +54,7 @@ int piocherMot(char * motPioche)
 	fgets(motPioche, 100, dico);
 
 	// On vire l'\n à la fin
-	if (tempNum == 8)
+	if (tempNum == nombreMots)
 	{
 		motPioche[strlen(motPioche) + 1] = '\0';
 	}
