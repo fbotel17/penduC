@@ -59,6 +59,9 @@ int main(int argc, char ** argv)
 		{
 			cout << "Joueur 1 entre ton mot, ne pas montrer a Joueur 2 (en MAJUSCULE) :"<<endl;
 			cin >> mot;
+			system("CLS");
+
+
 		}
 
 		//rempli le tableau tablettre de * pour l'affiche utilisateur
